@@ -36,4 +36,4 @@ A web app for managing a fantasy beer league
 - Waiver wire
 - Team profile / lineup
 - Admin
-
+- Ed's premium selections
