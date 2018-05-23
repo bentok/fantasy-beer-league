@@ -1,7 +1,7 @@
 # fantasy-beer-league
 A web app for managing a fantasy beer league
 
-## Feature Roadmap
+## Feature Roadmap (MVP)
 - Account creation and authentication
 - User / Profile management
 - Account types (League admin, team/user, super admin)
@@ -19,12 +19,12 @@ A web app for managing a fantasy beer league
 - Upcoming matchup widget
   - Smack talk stream
   - Live score streaming when game starts
-- League buy-in support
 
 
-## Parking lot
+## Additional features
 - Webcam/voice chat support
 - Trades
+- League buy-in support
 
 ## Pages
 - Dashboard widgets
