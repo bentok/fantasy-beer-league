@@ -1,8 +1,9 @@
 const express = require('express');
+
 const router = express.Router();
 
 /* GET users listing. */
-router.get('/breweries', (req, res, next) => {
+router.get('/breweries', (req, res) => {
   res.send('getting breweries');
 });
 

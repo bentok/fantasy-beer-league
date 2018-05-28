@@ -6,7 +6,8 @@ router.use((req, res, next) => {
   next();
 });
 
-router.use('/', 
+router.use(
+  '/',
   // Require paths here to register
   require('../breweries/breweries.route'),
   require('../user/user.route'),
