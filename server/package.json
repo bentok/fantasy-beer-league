@@ -19,6 +19,7 @@
   "author": "Ben Copeland",
   "license": "UNLICENSED",
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "eslint": "^4.19.1",
