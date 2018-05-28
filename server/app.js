@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 const router = require('./router');
+// Connect to DB
+require('./db/connection');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
