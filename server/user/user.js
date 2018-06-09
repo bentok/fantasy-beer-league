@@ -3,29 +3,24 @@ const UserCredentials = require('./userCredentials.model');
 const bcrypt = require('bcrypt-nodejs');
 
 class User {
-  static create (user) {
-    const userModel = new UserModel();
-    const userCredentials = new UserCredentials();
+  static async create (user) {
+    const userModel = await userModel.save(Object.assign(new UserModel(), user));
+    const credentials = await createCredentials(userModel);
+    return {
+      message: 'User created!',
+      body: credentials,
+    };
 
-    Object.assign(userModel, user);
-    return userModel.save()
-      .catch(error => new Error(error))
-      .then((data) => {
-        Object.assign(userCredentials, { hash: user.password, user_id: data._id });
-        return userCredentials.save()
-          .then(result => result)
-          .catch(error => new Error(error));
-      })
-      .then(data => ({
-        message: 'User created!',
-        body: data,
-      }));
+    function createCredentials (data) {
+      return Object.assign(new UserCredentials(), { hash: user.password, user_id: data._id }).save();
+    }
   }
 
-  static login (user) {
-    return UserModel.findOne({ email: user.email })
-      .then(getUserCredentials)
-      .then(verifyPassword);
+  static async login (user) {
+    const userModel = await UserModel.findOne({ email: user.email });
+    const userCredentials = await getUserCredentials(userModel);
+    const verification = await verifyPassword(userCredentials);
+    return verification;
 
     function getUserCredentials (record) {
       return UserCredentials.findOne({ user_id: record._id });
