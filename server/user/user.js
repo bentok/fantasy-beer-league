@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 class User {
   static async create (user) {
-    const userModel = await userModel.save(Object.assign(new UserModel(), user));
+    const userModel = await new UserModel().save(Object.assign(new UserModel(), user));
     const credentials = await createCredentials(userModel);
     return {
       message: 'User created!',
@@ -12,7 +12,10 @@ class User {
     };
 
     function createCredentials (data) {
-      return Object.assign(new UserCredentials(), { hash: user.password, user_id: data._id }).save();
+      return Object.assign(
+        new UserCredentials(),
+        { hash: user.password, user_id: data._id },
+      ).save();
     }
   }
 
