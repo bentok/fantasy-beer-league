@@ -4,7 +4,7 @@
 
 const app = require('../app');
 const http = require('http');
-const logger = require('../logger/logger');
+const logger = require('../logger');
 
 // Enable debugging
 require('debug')('zombie-api:server');

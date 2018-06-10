@@ -1,4 +1,4 @@
-const logger = require('../logger/logger');
+const logger = require('../logger');
 const router = require('express').Router();
 
 router.use((req, res, next) => {
@@ -11,6 +11,7 @@ router.use(
   // Require paths here to register
   require('../breweries/breweries.route'),
   require('../user/user.route'),
+  require('../preferences/preferences.route'),
 );
 
 module.exports = router;

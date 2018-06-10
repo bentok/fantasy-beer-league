@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const logger = require('../logger/logger');
+const logger = require('../logger');
 
 // Put Mongoose events in their own file
 mongoose.connect('mongodb://localhost:27017/fantasy-beer-league');
