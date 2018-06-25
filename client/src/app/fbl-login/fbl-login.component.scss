@@ -1,0 +1,19 @@
+@import '../../grid.scss';
+
+mat-card {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+form {
+  @include row;
+}
+
+mat-form-field {
+  @include flex-col-5;
+}
+
+div {
+  @include flex-col-2;
+}
