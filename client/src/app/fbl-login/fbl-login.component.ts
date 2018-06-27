@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { LoginService } from '../services/login.service';
 import { patternValidator } from '../services/pattern-validator.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { patternValidator } from '../services/pattern-validator.service';
 export class FblLoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit () {
     this.createForm();
@@ -24,7 +26,9 @@ export class FblLoginComponent implements OnInit {
   }
 
   login () {
-    console.log(this.loginForm.value);
+    this.loginService.post(this.loginForm.value).subscribe(data => {
+      console.log('response', data);
+    });
   }
 
 }

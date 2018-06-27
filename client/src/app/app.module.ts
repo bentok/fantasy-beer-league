@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -11,6 +12,8 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { FblDashboardComponent } from './fbl-dashboard/fbl-dashboard.component';
 import { FblLoginComponent } from './fbl-login/fbl-login.component';
 
+import { LoginService } from './services/login.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +25,7 @@ import { FblLoginComponent } from './fbl-login/fbl-login.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    HttpClientModule,
     LayoutModule,
     MatButtonModule,
     MatCardModule,
@@ -35,7 +39,9 @@ import { FblLoginComponent } from './fbl-login/fbl-login.component';
     MatToolbarModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    LoginService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
