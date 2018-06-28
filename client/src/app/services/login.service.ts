@@ -15,6 +15,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   post (login: Login): Observable<Login> {
-    return this.http.post<Login>('localhost:5001', login, httpOptions)
+    return this.http.post<Login>('http://localhost:5001/api/user/login', login, httpOptions)
   }
 }
