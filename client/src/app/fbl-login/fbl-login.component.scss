@@ -14,6 +14,13 @@ mat-form-field {
   @include flex-col-5;
 }
 
-div {
+mat-card-content div {
   @include flex-col-2;
+}
+
+mat-card-actions {
+  @include row;
+  button, div {
+    @include flex-col;
+  }
 }

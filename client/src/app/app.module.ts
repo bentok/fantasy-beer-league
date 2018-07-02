@@ -13,6 +13,7 @@ import { FblDashboardComponent } from './fbl-dashboard/fbl-dashboard.component';
 import { FblLoginComponent } from './fbl-login/fbl-login.component';
 
 import { LoginService } from './services/login.service';
+import { FblRegisterComponent } from './fbl-register/fbl-register.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LoginService } from './services/login.service';
     FblDashboardComponent,
     FblLoginComponent,
     FblNavComponent,
+    FblRegisterComponent,
   ],
   imports: [
     AppRoutingModule,
