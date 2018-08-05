@@ -4,12 +4,21 @@ const bcrypt = require('bcrypt-nodejs');
 
 class User {
   static async create (user) {
-    const userModel = await new UserModel().save(Object.assign(new UserModel(), user));
-    const credentials = await createCredentials(userModel);
-    return {
-      message: 'User created!',
-      body: credentials,
-    };
+    try {
+      const exists = await UserModel.findOne({ email: user.email });
+      if (exists) {
+        throw new Error('User already exists for this email.');
+      }
+
+      const userModel = await new UserModel(Object.assign(new UserModel(), user)).save();
+      const credentials = await createCredentials(userModel);
+      return {
+        message: 'User created!',
+        body: credentials,
+      };
+    } catch (error) {
+      throw new Error(`Error creating user: ${error}`);
+    }
 
     function createCredentials (data) {
       return Object.assign(
