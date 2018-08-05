@@ -7,8 +7,12 @@ const errorHandler = (err, req, res, next) => { // eslint-disable-line no-unused
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // Respond with error
-  res.status(err.status || 500);
-  res.send(err.message);
+  const { status = 500, message } = err;
+  res.status(status);
+  res.send({
+    status,
+    message,
+  });
 };
 
 module.exports = errorHandler;
