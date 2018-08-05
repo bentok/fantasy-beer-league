@@ -32,6 +32,6 @@
     "tracer": "^0.8.12"
   },
   "devDependencies": {
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.18.3"
   }
 }

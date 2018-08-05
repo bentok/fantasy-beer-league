@@ -17,20 +17,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', router);
 
-// catch 404 and forward to error handler
+// Catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
 });
 
-// error handler
-app.use((err, req, res) => {
-  // set locals, only providing error in development
+// Error handler
+app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+  // Set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // Respond with error
   res.status(err.status || 500);
-  res.send('error');
+  res.send(err.message);
 });
 
 module.exports = app;

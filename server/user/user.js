@@ -20,10 +20,14 @@ class User {
   }
 
   static async login (user) {
-    const userModel = await UserModel.findOne({ email: user.email });
-    const userCredentials = await getUserCredentials(userModel);
-    const verification = await verifyPassword(userCredentials);
-    return verification;
+    try {
+      const userModel = await UserModel.findOne({ email: user.email });
+      const userCredentials = await getUserCredentials(userModel);
+      const verification = await verifyPassword(userCredentials);
+      return verification;
+    } catch (error) {
+      throw new Error(error);
+    }
 
     function getUserCredentials (record) {
       return UserCredentials.findOne({ user_id: record._id });
@@ -33,7 +37,7 @@ class User {
       return new Promise((resolve, reject) => {
         bcrypt.compare(user.password, record.hash, (error, isMatch) => {
           if (!isMatch) {
-            reject(new Error(error));
+            reject(new Error('Provided password does not match the one on file'));
           }
           resolve({
             message: 'Successful login',
