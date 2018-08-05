@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { LoginService } from '../services/login.service';
@@ -7,12 +8,15 @@ import { patternValidator } from '../services/pattern-validator.service';
 @Component({
   selector: 'fbl-fbl-login',
   templateUrl: './fbl-login.component.html',
-  styleUrls: ['./fbl-login.component.scss']
+  styleUrls: ['../styles/form.scss']
 })
 export class FblLoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+  ) { }
 
   ngOnInit () {
     this.createForm();
@@ -29,6 +33,10 @@ export class FblLoginComponent implements OnInit {
     this.loginService.post(this.loginForm.value).subscribe(data => {
       console.log('response', data);
     });
+  }
+
+  newAccount () {
+    this.router.navigate(['/register']);
   }
 
 }

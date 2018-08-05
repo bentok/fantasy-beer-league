@@ -13,6 +13,7 @@ import { FblDashboardComponent } from './fbl-dashboard/fbl-dashboard.component';
 import { FblLoginComponent } from './fbl-login/fbl-login.component';
 
 import { LoginService } from './services/login.service';
+import { RegisterService } from './services/register.service';
 import { FblRegisterComponent } from './fbl-register/fbl-register.component';
 
 @NgModule({
@@ -43,6 +44,7 @@ import { FblRegisterComponent } from './fbl-register/fbl-register.component';
   ],
   providers: [
     LoginService,
+    RegisterService,
   ],
   bootstrap: [AppComponent]
 })
