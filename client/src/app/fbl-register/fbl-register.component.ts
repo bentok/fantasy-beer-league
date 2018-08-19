@@ -32,7 +32,7 @@ export class FblRegisterComponent implements OnInit {
 
   register () {
     this.registerService.post(this.registerForm.value).subscribe(data => {
-      console.log('response', data);
+      this.router.navigate(['/login']);
     });
   }
 

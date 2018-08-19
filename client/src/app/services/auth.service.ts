@@ -19,7 +19,6 @@ export class AuthService {
     return this.http.post<Token>('http://localhost:5001/api/user/login', login, httpOptions)
       .pipe(
         map(result => {
-          console.log(result);
           localStorage.setItem('access_token', result.token);
           return true;
         })
