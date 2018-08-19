@@ -1,5 +1,6 @@
-const UserModel = require('./user.model');
 const UserCredentials = require('./userCredentials.model');
+const UserModel = require('./user.model');
+const Auth = require('../auth/auth');
 const bcrypt = require('bcrypt-nodejs');
 
 class User {
@@ -29,11 +30,13 @@ class User {
   }
 
   static async login (user) {
+    const { email, password } = user;
     try {
-      const userModel = await UserModel.findOne({ email: user.email });
+      const userModel = await UserModel.findOne({ email });
       const userCredentials = await getUserCredentials(userModel);
       const verification = await verifyPassword(userCredentials);
-      return verification;
+      const token = Auth.authenticate(verification);
+      return token;
     } catch (error) {
       throw new Error(error);
     }
@@ -44,13 +47,11 @@ class User {
 
     function verifyPassword (record) {
       return new Promise((resolve, reject) => {
-        bcrypt.compare(user.password, record.hash, (error, isMatch) => {
+        bcrypt.compare(password, record.hash, (error, isMatch) => {
           if (!isMatch) {
             reject(new Error('Provided password does not match the one on file'));
           }
-          resolve({
-            message: 'Successful login',
-          });
+          resolve({ user: email });
         });
       });
     }
