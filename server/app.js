@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const expressJwt = require('express-jwt');
 const cors = require('cors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -14,6 +15,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(expressJwt({ secret: process.env.JWT_SECRET })
+  .unless({ path: ['/api/user/login', '/api/user/register'] }));
 
 app.use('/api', router);
 // Catch 404 and forward to error handler
