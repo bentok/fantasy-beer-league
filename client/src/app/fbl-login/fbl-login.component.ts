@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
-import { LoginService } from '../services/login.service';
+import { AuthService } from '../services/auth.service';
 import { patternValidator } from '../services/pattern-validator.service';
 
 @Component({
@@ -12,9 +13,10 @@ import { patternValidator } from '../services/pattern-validator.service';
 })
 export class FblLoginComponent implements OnInit {
   loginForm: FormGroup;
+  public error: string;
 
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private router: Router,
   ) { }
 
@@ -30,9 +32,12 @@ export class FblLoginComponent implements OnInit {
   }
 
   login () {
-    this.loginService.post(this.loginForm.value).subscribe(data => {
-      console.log('response', data);
-    });
+    this.authService.post(this.loginForm.value)
+      .pipe(first())
+      .subscribe(
+        () => this.router.navigate(['dashboard']),
+        () => this.error = 'Could not authenticate'
+      );
   }
 
   newAccount () {

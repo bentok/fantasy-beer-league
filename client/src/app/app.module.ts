@@ -14,7 +14,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { FblDashboardComponent } from './fbl-dashboard/fbl-dashboard.component';
 import { FblLoginComponent } from './fbl-login/fbl-login.component';
 
-import { LoginService } from './services/login.service';
+import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
 import { FblRegisterComponent } from './fbl-register/fbl-register.component';
 
@@ -57,7 +57,7 @@ export function tokenGetter() {
   ],
   providers: [
     AuthGuard,
-    LoginService,
+    AuthService,
     RegisterService,
   ],
   bootstrap: [AppComponent]

@@ -36,7 +36,7 @@ class User {
       const userCredentials = await getUserCredentials(userModel);
       const verification = await verifyPassword(userCredentials);
       const token = Auth.authenticate(verification);
-      return token;
+      return { token };
     } catch (error) {
       throw new Error(error);
     }
