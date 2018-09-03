@@ -14,9 +14,12 @@
         <input matInput placeholder="Nickname" formControlName="nickname" name="nickname">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Email" formControlName="email" name="email" required>
+        <input matInput placeholder="Email" formControlName="email" name="email">
       </mat-form-field>
-      <div>
+      <mat-form-field>
+        <input matInput placeholder="Secondary Email" formControlName="secondaryEmail" name="secondaryEmail">
+      </mat-form-field>
+      <div class="radio-group">
         <label>Gender: </label>
         <mat-radio-group formControlName="gender">
           <mat-radio-button value="male">Male</mat-radio-button>

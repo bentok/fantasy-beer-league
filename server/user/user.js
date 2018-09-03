@@ -51,9 +51,24 @@ class User {
           if (!isMatch) {
             reject(new Error('Provided password does not match the one on file'));
           }
-          resolve({ user: email });
+          resolve({ email });
         });
       });
+    }
+  }
+
+  static async getUserAccount ({ email, tokenUser }) {
+    try {
+      if (tokenUser.user !== email) {
+        throw new Error('Cannot retrieve info for another account');
+      }
+      const user = await UserModel.findOne({ email });
+      if (user === null) {
+        throw new Error(`User with email ${email} was not found`);
+      }
+      return user;
+    } catch (error) {
+      throw error;
     }
   }
 }

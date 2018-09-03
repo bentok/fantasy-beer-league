@@ -1,0 +1,19 @@
+mat-card {
+  margin: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.radio-group {
+  label {
+    margin-right: 40px;
+  }
+  mat-radio-button {
+    margin-left: 40px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
