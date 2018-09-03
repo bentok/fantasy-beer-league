@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Profile</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="profileForm">
+      <mat-form-field>
+        <input matInput placeholder="First Name" formControlName="firstName" name="firstName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Last Name" formControlName="lastName" name="lastName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Nickname" formControlName="nickname" name="nickname">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email" name="email" required>
+      </mat-form-field>
+      <div>
+        <label>Gender: </label>
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+          <mat-radio-button value="other">Other</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+</mat-card>

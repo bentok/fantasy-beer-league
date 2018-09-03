@@ -7,7 +7,6 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "fbl",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"

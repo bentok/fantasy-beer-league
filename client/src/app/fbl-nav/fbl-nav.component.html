@@ -8,7 +8,8 @@
     [hidden]="!auth.loggedIn">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item [routerLink]="['/dashboard']" (click)="drawer.toggle()">Dashboard</a>
+      <a mat-list-item [routerLink]="['/profile']" (click)="drawer.toggle()">Profile</a>
       <a mat-list-item href="#">Link 2</a>
       <a mat-list-item href="#">Link 3</a>
       <a mat-list-item (click)="logout()">Logout</a>

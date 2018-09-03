@@ -10,13 +10,14 @@ import { AuthGuard } from './services/auth.guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FblNavComponent } from './fbl-nav/fbl-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatInputModule, MatProgressSpinnerModule, MatRadioModule } from '@angular/material';
 import { FblDashboardComponent } from './fbl-dashboard/fbl-dashboard.component';
 import { FblLoginComponent } from './fbl-login/fbl-login.component';
 
 import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
 import { FblRegisterComponent } from './fbl-register/fbl-register.component';
+import { FblProfileComponent } from './fbl-profile/fbl-profile.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -29,6 +30,7 @@ export function tokenGetter() {
     FblLoginComponent,
     FblNavComponent,
     FblRegisterComponent,
+    FblProfileComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -44,6 +46,7 @@ export function tokenGetter() {
     MatListModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
     MatSidenavModule,
     MatToolbarModule,
     ReactiveFormsModule,
