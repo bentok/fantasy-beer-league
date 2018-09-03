@@ -8,6 +8,11 @@ import { FblRegisterComponent } from './fbl-register/fbl-register.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+  {
     path: 'login',
     component: FblLoginComponent,
   },
