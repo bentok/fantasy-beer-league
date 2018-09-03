@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(expressJwt({ secret: process.env.JWT_SECRET })
-  .unless({ path: ['/api/user/login', '/api/user/register'] }));
+  .unless({ path: ['/api/user/login', '/api/user/create'] }));
 
 app.use('/api', router);
 // Catch 404 and forward to error handler
