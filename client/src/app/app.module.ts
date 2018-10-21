@@ -18,6 +18,8 @@ import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
 import { FblRegisterComponent } from './fbl-register/fbl-register.component';
 import { FblProfileComponent } from './fbl-profile/fbl-profile.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -56,7 +58,8 @@ export function tokenGetter() {
         whitelistedDomains: ['localhost:3000'],
         blacklistedRoutes: ['localhost:3000/user/login']
       }
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AuthGuard,
