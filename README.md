@@ -37,3 +37,9 @@ A web app for managing a fantasy beer league
 - Team profile / lineup
 - Admin
 - Ed's premium selections
+
+## Submitting PRs
+If you'd like to submit a pull request to this project, please use the [template][/docs/pull_request_template.md].
+
+## Submitting Issues
+If you'd like to submit an issue, please run through the checklist and use the [template][/docs/issue_template.md].
