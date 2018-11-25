@@ -7,7 +7,7 @@ const http = require('http');
 const logger = require('../logger');
 
 // Enable debugging
-require('debug')('zombie-api:server');
+require('debug')('fantasy-beer-league:server');
 
 /**
  * Get port from environment and store in Express.
