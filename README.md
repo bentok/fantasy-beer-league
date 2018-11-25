@@ -43,3 +43,15 @@ If you'd like to submit a pull request to this project, please use the [template
 
 ## Submitting Issues
 If you'd like to submit an issue, please run through the checklist and use the [template][/docs/issue_template.md].
+
+## App Setup
+
+Install [Yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) for dependency management
+
+`brew install yarn`
+
+Navigate to both client and server directories and run `yarn` in each.
+
+In client run `npm start` to run the Angular app.
+
+In server run `npm run dev` to run the server and database.
