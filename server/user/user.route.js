@@ -3,12 +3,22 @@ const express = require('express');
 const router = express.Router();
 const User = require('./user');
 
+/**
+ * Routes for creating, retreiving and updating a user's information
+ */
+
 router.use('/user', [
-  // TODO: GET /user/account should only return details for logged in user
-  //       GET /user/details should return more basic details of any user within one's own league
-  router.get('/account', async (req, res, next) => {
+  router.get('/', async (req, res, next) => {
     try {
-      res.json(await User.getUserAccount({ email: req.query.email, tokenUser: req.user.user }));
+      res.json(await User.getUserAccount({ email: req.user.email }));
+    } catch (error) {
+      next(error);
+    }
+  }),
+  router.put('/', async (req, res, next) => {
+    const changes = req.body;
+    try {
+      res.json(await User.update({ email: req.user.email, changes }));
     } catch (error) {
       next(error);
     }
