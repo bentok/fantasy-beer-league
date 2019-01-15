@@ -16,16 +16,18 @@ router.use('/preferences', [
   }),
   router.put('/', async (req, res, next) => {
     const preferences = req.body;
+    const { email } =  req.user;
     try {
-      res.json(await Preferences.update({ email: req.user.email, preferences }));
+      res.json(await Preferences.update({ email, preferences }));
     } catch (error) {
       next(error);
     }
   }),
   router.post('/', async (req, res, next) => {
     const preferences = req.body;
+    const { email } =  req.user;
     try {
-      res.json(await Preferences.create({ email: req.user.email, preferences }));
+      res.json(await Preferences.create({ email, preferences }));
     } catch (error) {
       next(error);
     }
