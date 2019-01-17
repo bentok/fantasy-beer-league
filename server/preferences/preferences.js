@@ -1,18 +1,53 @@
-const PreferencesModel = require('./preferences.model');
+const PreferenceModel = require('./preference.model');
+const User = require('../user/user');
+
+/**
+ * @class Preferences
+ * Logic for handling preferences
+ */
 
 class Preferences {
-  constructor () {
-    this.startPage = 'dashboard';
-    this.emailUpdates = true;
-    this.profileImage = 'team'; // Account avatar or team logo
+  /**
+   * Get the preferences for an entity
+   * @param {Object} params
+   * @param {String} params.email Email address from the user request object
+   */
+  static async get ({ email }) {
+    return User.getUserAccount({ email }).preferences;
   }
 
-  static async fetch (user) {
-    return PreferencesModel.findOne({ user_id: user._id });
+
+  /**
+   * Update the preferences for an entity
+   * @param {Object} params
+   * @param {String} params.email Email address from the user request object
+   * @param {Object} params.preferences Array of preferences to update
+   */
+  static async update ({ email, preferences: newPreferences }) {
+    try {
+      const preferences = await User.getUserAccount({ email }).preferences || new Map();
+      newPreferences.forEach(preference => {
+        preferences.set(preference.name, new PreferenceModel(preference));
+      });
+      return User.update({
+        email,
+        changes: {
+          preferences,
+        },
+      });
+    } catch (error) {
+      throw error;
+    }
   }
 
-  static async update () {
-    return 'Update preferences';
+  /**
+   * Set the preferences for the first time
+   * @param {Object} params
+   * @param {String} params.email Email address from the user request object
+   * @param {Object} params.preferences Array of preferences to update
+   */
+  static async create ({ email, preferences }) {
+    return Preferences.update({ email, preferences });
   }
 }
 

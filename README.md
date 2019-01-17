@@ -52,8 +52,8 @@ Install [MongoDB Community Edition server](https://docs.mongodb.com/manual/insta
 
 Navigate to both client and server directories and run `yarn` in each.
 
-In client run `npm start` to run the Angular app.
+In client run `yarn start` to run the Angular app.
 
 Run the Mongo server with `mongod`.
 
-In server run `npm run dev` to run the API.
+In server run `yarn run dev` to run the API.

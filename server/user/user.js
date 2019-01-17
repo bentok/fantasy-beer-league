@@ -3,7 +3,16 @@ const UserModel = require('./user.model');
 const Auth = require('../auth/auth');
 const bcrypt = require('bcrypt-nodejs');
 
+/**
+ * @class User
+ * Logic for updating a user
+ */
+
 class User {
+  /**
+   * Create a new user and create their credentials in two separate documents
+   * @param {Object} user User object
+   */
   static async create (user) {
     try {
       const exists = await UserModel.findOne({ email: user.email });
@@ -12,10 +21,9 @@ class User {
       }
 
       const userModel = await new UserModel(Object.assign(new UserModel(), user)).save();
-      const credentials = await createCredentials(userModel);
+      await createCredentials(userModel);
       return {
         message: 'User created!',
-        body: credentials,
       };
     } catch (error) {
       throw new Error(`Error creating user: ${error}`);
@@ -29,6 +37,10 @@ class User {
     }
   }
 
+  /**
+   * Login a user and verify their credentials
+   * @param {Object} user User object
+   */
   static async login (user) {
     const { email, password } = user;
     try {
@@ -57,16 +69,37 @@ class User {
     }
   }
 
-  static async getUserAccount ({ email, tokenUser }) {
+  /**
+   * Get details of a user's account
+   * @param {Object} params
+   * @param {String} params.email Email address for user
+   */
+  static async getUserAccount ({ email }) {
     try {
-      if (tokenUser.user !== email) {
-        throw new Error('Cannot retrieve info for another account');
-      }
-      const user = await UserModel.findOne({ email });
-      if (user === null) {
+      const userAccount = await UserModel.findOne({ email });
+      if (userAccount === null) {
         throw new Error(`User with email ${email} was not found`);
       }
-      return user;
+      return userAccount;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * Update the details of a user's account
+   * @param {Object} params
+   * @param {String} params.email Email address for user
+   * @param {Object} params.changes Oject containing the changes to the user's info
+   */
+  static async update ({ email, changes }) {
+    try {
+      const account = await User.getUserAccount({ email });
+      const updatedAccount = await Object.assign(account, changes).save();
+      return {
+        message: 'Model updated',
+        updatedAccount,
+      };
     } catch (error) {
       throw error;
     }
