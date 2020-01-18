@@ -3,6 +3,7 @@ module UserRepository
 open MongoDB.Bson
 open MongoDB.Driver
 open MongoDB.FSharp
+
 open DB
 
 type User =

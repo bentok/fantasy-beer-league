@@ -9,6 +9,7 @@ open Suave.Writers
 open Newtonsoft.Json
 
 open UserRepository
+open Auth
     
 //low level functions
 let getString (rawForm: byte[]) =
@@ -49,13 +50,25 @@ let deleteUser id =
     |> OK
     >=> setMimeType "application/json"
 
+let login =
+    request (fun r ->
+    r.rawForm
+    |> getString
+    |> fromJson<Login>
+    |> Auth.hash
+    // TODO: Get user from User repository
+    |> JsonConvert.SerializeObject
+    |> OK)
+    >=> setMimeType "application/json"
+
 let handlers =
     choose [ 
         GET >=> choose
             [ pathScan "/user/%d" getUser ]
 
         POST >=> choose
-            [ path "/user" >=> createUser ]
+            [ path "/user" >=> createUser
+              path "/login" >=> login ]
 
         PUT >=> choose
             [ path "/user" >=> updateUser ]

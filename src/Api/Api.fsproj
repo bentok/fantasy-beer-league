@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,6 +6,7 @@
   <ItemGroup>
     <Compile Include="DB.fs" />
     <Compile Include="User.Repository.fs" />
+    <Compile Include="Auth.fs" />
     <Compile Include="User.Controller.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
