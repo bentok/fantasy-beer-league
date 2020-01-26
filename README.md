@@ -13,7 +13,7 @@
 - `dotnet tool restore`
 - `dotnet paket init`
 - `dotnet paket add {DependencyName}`
-- `dotnet paket reload`
+- `dotnet paket restore`
 - (add package to .fsproj file)
 
 #### Import module into app module
