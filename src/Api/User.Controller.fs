@@ -10,6 +10,8 @@ open Newtonsoft.Json
 
 open UserRepository
 open Auth
+
+let foo = create
     
 //low level functions
 let getString (rawForm: byte[]) =
